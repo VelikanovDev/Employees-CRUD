@@ -1,6 +1,5 @@
 package com.velikanov.employees_crud.contorller;
 
-import com.velikanov.employees_crud.dao.EmployeeDAO;
 import com.velikanov.employees_crud.entity.Employee;
 import com.velikanov.employees_crud.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,14 +8,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.util.List;
 
 @Controller
 public class MyController {
+    private final EmployeeService employeeService;
 
     @Autowired
-    private EmployeeService employeeService;
+    public MyController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
 
     @RequestMapping("/")
     public String showAllEmployees(Model model) {
